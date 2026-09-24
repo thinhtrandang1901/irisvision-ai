@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IrisVision AI — Botanical Intelligence</title>
+
+    <!-- Logo trên tab trình duyệt -->
+    <link
+        rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237652A8'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-family='Arial' font-size='38' font-weight='700' fill='white'%3EIA%3C/text%3E%3C/svg%3E"
+    >
+
+    <meta property="og:title" content="IrisVision AI">
+    <meta property="og:description" content="Intelligent Flower Classification System — SVM Iris Classifier">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="/static/css/style.css?v=10">
+</head>
+
+<body>
+
+<button id="theme-toggle" class="theme-toggle">
+    🌙 Dark Mode
+</button>
+
+<div class="app-shell">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+
+        <div class="logo-area">
+
+            <div class="logo-mark">
+                IA
+            </div>
+
+            <div>
+                <div class="logo-title">
+                    IrisVision AI
+                </div>
+
+                <div class="logo-subtitle">
+                    Botanical Intelligence
+                </div>
+            </div>
+
+        </div>
+
+        <div class="topbar-right">
+
+            <div class="live-status">
+                <span></span>
+                LIVE MODEL
+            </div>
+
+            <div class="model-pill">
+                SVM / LINEAR
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero-card">
+
+        <div class="hero-left">
+
+            <div class="hero-kicker">
+                MACHINE LEARNING · IRIS CLASSIFICATION
+            </div>
+
+            <h1>
+                Meet your flower's
+                <span>AI identity.</span>
+            </h1>
+
+            <p class="hero-description">
+                Nhập bốn thông số hình thái của hoa.
+                IrisVision AI sẽ phân tích dữ liệu bằng mô hình
+                Support Vector Machine và xác định loài hoa.
+            </p>
+
+            <div class="hero-metrics">
+
+                <div class="hero-metric">
+                    <strong>96.67%</strong>
+                    <span>CV Accuracy</span>
+                </div>
+
+                <div class="hero-divider"></div>
+
+                <div class="hero-metric">
+                    <strong>3</strong>
+                    <span>Species</span>
+                </div>
+
+                <div class="hero-divider"></div>
+
+                <div class="hero-metric">
+                    <strong>4</strong>
+                    <span>Features</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-art">
+
+            <div class="hero-orbit orbit-1"></div>
+            <div class="hero-orbit orbit-2"></div>
+
+            <div class="hero-flower-frame">
+
+                <img
+                    src="/static/images/virginica.jpg"
+                    alt="Iris Virginica"
+                >
+
+            </div>
+
+            <div class="floating-card">
+
+                <span>FEATURED SPECIES</span>
+
+                <strong>Iris Virginica</strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREDICTION STUDIO -->
+    <section class="studio">
+
+        <div class="studio-header">
+
+            <div>
+
+                <div class="section-kicker">
+                    PREDICTION STUDIO
+                </div>
+
+                <h2>
+                    Let's identify your Iris
+                </h2>
+
+                <p>
+                    Hai bước để nhận diện loài hoa.
+                </p>
+
+            </div>
+
+            <div class="step-indicator">
+
+                <span class="step-active">
+                    01
+                </span>
+
+                <i></i>
+
+                <span>
+                    02
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="studio-grid">
+
+            <!-- INPUT CARD -->
+            <div class="studio-card input-card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span class="card-number">
+                            01
+                        </span>
+
+                        <h3>
+                            Flower measurements
+                        </h3>
+
+                    </div>
+
+                    <div class="card-icon">
+                        ✦
+                    </div>
+
+                </div>
+
+                <p class="card-description">
+                    Đơn vị đo là centimet (cm).
+                </p>
+
+
+                <div class="input-grid">
+
+                    <div class="field">
+
+                        <label for="sepal_length">
+                            Sepal Length
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <input
+                                id="sepal_length"
+                                type="number"
+                                step="0.1"
+                                placeholder="5.1"
+                            >
+
+                            <span>cm</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="sepal_width">
+                            Sepal Width
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <input
+                                id="sepal_width"
+                                type="number"
+                                step="0.1"
+                                placeholder="3.5"
+                            >
+
+                            <span>cm</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="petal_length">
+                            Petal Length
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <input
+                                id="petal_length"
+                                type="number"
+                                step="0.1"
+                                placeholder="1.4"
+                            >
+
+                            <span>cm</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="petal_width">
+                            Petal Width
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <input
+                                id="petal_width"
+                                type="number"
+                                step="0.1"
+                                placeholder="0.2"
+                            >
+
+                            <span>cm</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="action-row">
+
+                    <button
+                        id="predict-btn"
+                        class="predict-button"
+                        type="button"
+                    >
+
+                        <span>
+                            Analyse with AI
+                        </span>
+
+                        <b>→</b>
+
+                    </button>
+
+
+                    <button
+                        id="sample-btn"
+                        class="sample-button"
+                        type="button"
+                    >
+                        Try sample
+                    </button>
+
+                </div>
+
+
+                <div class="secure-note">
+
+                    <span class="secure-dot"></span>
+
+                    SVM model ready for prediction
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULT CARD -->
+            <div class="studio-card result-card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span class="card-number">
+                            02
+                        </span>
+
+                        <h3>
+                            AI prediction
+                        </h3>
+
+                    </div>
+
+                    <div class="ai-chip">
+                        AI
+                    </div>
+
+                </div>
+
+
+                <div id="result-content">
+
+                    <div class="waiting-state">
+
+                        <div class="waiting-flower">
+                            ✿
+                        </div>
+
+                        <h3>
+                            Waiting for your sample
+                        </h3>
+
+                        <p>
+                            Nhập thông số ở bên trái
+                            để bắt đầu phân tích.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREDICTION HISTORY -->
+    <section class="studio-card history-card">
+
+        <div class="card-top">
+
+            <div>
+
+                <span class="card-number">
+                    03
+                </span>
+
+                <h3>
+                    Prediction history
+                </h3>
+
+            </div>
+
+            <div class="card-icon">
+                📜
+            </div>
+
+        </div>
+
+
+        <p class="card-description">
+            Theo dõi các kết quả phân loại gần đây.
+        </p>
+
+
+        <!-- JavaScript hiển thị lịch sử ở đây -->
+        <div id="history-list">
+
+            <p>
+                Chưa có lịch sử dự đoán.
+            </p>
+
+        </div>
+
+
+        <button
+            id="clear-history"
+            class="clear-history-btn"
+            type="button"
+        >
+            Xóa lịch sử
+        </button>
+
+    </section>
+
+
+    <!-- SPECIES GALLERY -->
+    <section class="gallery-section">
+
+        <div class="gallery-heading">
+
+            <div>
+
+                <div class="section-kicker">
+                    IRIS COLLECTION
+                </div>
+
+                <h2>
+                    Three species. One intelligent model.
+                </h2>
+
+            </div>
+
+            <p>
+                Các lớp được mô hình phân loại.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+            <!-- SETOSA -->
+            <article class="species-card">
+
+                <div class="species-image">
+
+                    <img
+                        src="/static/images/setosa.jpg"
+                        alt="Iris Setosa"
+                    >
+
+                    <span>01</span>
+
+                </div>
+
+                <div class="species-body">
+
+                    <div class="species-tag">
+                        CLASS A
+                    </div>
+
+                    <h3>
+                        Iris Setosa
+                    </h3>
+
+                    <p>
+                        Nhóm thường có kích thước
+                        cánh hoa nhỏ hơn.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- VERSICOLOR -->
+            <article class="species-card">
+
+                <div class="species-image">
+
+                    <img
+                        src="/static/images/versicolor.jpg"
+                        alt="Iris Versicolor"
+                    >
+
+                    <span>02</span>
+
+                </div>
+
+                <div class="species-body">
+
+                    <div class="species-tag">
+                        CLASS B
+                    </div>
+
+                    <h3>
+                        Iris Versicolor
+                    </h3>
+
+                    <p>
+                        Đặc trưng có kích thước
+                        trung gian giữa các lớp.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIRGINICA -->
+            <article class="species-card">
+
+                <div class="species-image">
+
+                    <img
+                        src="/static/images/virginica.jpg"
+                        alt="Iris Virginica"
+                    >
+
+                    <span>03</span>
+
+                </div>
+
+                <div class="species-body">
+
+                    <div class="species-tag">
+                        CLASS C
+                    </div>
+
+                    <h3>
+                        Iris Virginica
+                    </h3>
+
+                    <p>
+                        Thường có cánh hoa
+                        lớn hơn hai lớp còn lại.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- MODEL DASHBOARD -->
+    <section class="model-dashboard">
+
+        <div class="model-heading">
+
+            <div>
+
+                <div class="section-kicker">
+                    MODEL INSIDE
+                </div>
+
+                <h2>
+                    Built for intelligent classification
+                </h2>
+
+            </div>
+
+            <div class="model-status">
+                ● MODEL ACTIVE
+            </div>
+
+        </div>
+
+
+        <div class="model-cards">
+
+            <div class="model-card">
+
+                <div class="model-symbol">
+                    ML
+                </div>
+
+                <span>Algorithm</span>
+
+                <strong>
+                    Support Vector Machine
+                </strong>
+
+            </div>
+
+
+            <div class="model-card">
+
+                <div class="model-symbol">
+                    K
+                </div>
+
+                <span>Kernel</span>
+
+                <strong>
+                    Linear
+                </strong>
+
+            </div>
+
+
+            <div class="model-card">
+
+                <div class="model-symbol">
+                    σ
+                </div>
+
+                <span>Scaling</span>
+
+                <strong>
+                    StandardScaler
+                </strong>
+
+            </div>
+
+
+            <div class="model-card">
+
+                <div class="model-symbol">
+                    CV
+                </div>
+
+                <span>Validation</span>
+
+                <strong>
+                    5-Fold Cross Validation
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div>
+
+            <strong>
+                IrisVision AI
+            </strong>
+
+            <span>
+                Botanical Intelligence Studio
+            </span>
+
+        </div>
+
+
+        <span>
+            Python · Scikit-learn · FastAPI · SVM
+        </span>
+
+    </footer>
+
+</div>
+
+
+<script src="/static/js/script.js?v=10"></script>
+
+</body>
+
+<!-- LUXURY AI INTRO -->
+<section id="intro-screen" class="intro-screen">
+
+    <div class="intro-glow glow-one"></div>
+    <div class="intro-glow glow-two"></div>
+
+    <div class="intro-content">
+
+        <div class="intro-logo">
+            IV<span>AI</span>
+        </div>
+
+        <div class="intro-line"></div>
+
+        <p class="intro-kicker">
+            ARTIFICIAL INTELLIGENCE · BOTANICAL SCIENCE
+        </p>
+
+        <h1>
+            Welcome to
+            <span>IrisVision AI</span>
+        </h1>
+
+        <p class="intro-description">
+            Discover the intelligence behind every flower.
+            Experience intelligent iris classification powered
+            by machine learning.
+        </p>
+
+        <div class="intro-tech">
+            <span>PYTHON</span>
+            <span>SVM</span>
+            <span>SCIKIT-LEARN</span>
+            <span>FASTAPI</span>
+        </div>
+
+        <button id="enter-app-btn" class="enter-app-btn">
+            <span>Explore IrisVision</span>
+            <b>→</b>
+        </button>
+
+        <p class="intro-footer">
+            INTELLIGENT CLASSIFICATION SYSTEM · 2026
+        </p>
+
+    </div>
+
+    <div class="intro-flower">
+        <img
+            src="/static/images/virginica.jpg"
+            alt="Iris Virginica"
+        >
+    </div>
+
+</section>
+</html>
