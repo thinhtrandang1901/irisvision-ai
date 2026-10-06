@@ -725,11 +725,72 @@
             <span>FASTAPI</span>
         </div>
 
-        <button id="enter-app-btn" class="enter-app-btn">
-            <span>Explore IrisVision</span>
-            <b>→</b>
-        </button>
+       {% if user %}
 
+<div class="google-user-box">
+
+    {% if user.picture %}
+    <img
+        src="{{ user.picture }}"
+        alt="{{ user.name }}"
+        class="google-avatar"
+    >
+    {% endif %}
+
+    <div class="google-user-info">
+
+        <strong>
+            {{ user.name }}
+        </strong>
+
+        <span>
+            {{ user.email }}
+        </span>
+
+    </div>
+
+</div>
+
+<button
+    id="enter-app-btn"
+    class="enter-app-btn"
+>
+    <span>Explore IrisVision</span>
+    <b>→</b>
+</button>
+
+<a
+    href="/logout"
+    class="logout-btn"
+>
+    Đăng xuất
+</a>
+
+{% else %}
+
+<a
+    href="/auth/google"
+    class="google-login-btn"
+>
+    <span class="google-icon">
+        G
+    </span>
+
+    <span>
+        Đăng nhập bằng Google
+    </span>
+</a>
+
+<p class="login-note">
+    Đăng nhập bằng tài khoản Google để bắt đầu sử dụng IrisVision AI.
+</p>
+
+{% endif %}
+{% if auth_error %}
+<p class="login-error">
+    Đăng nhập Google chưa thành công. Vui lòng thử lại.
+</p>
+{% endif %}
         <p class="intro-footer">
             INTELLIGENT CLASSIFICATION SYSTEM · 2026
         </p>
