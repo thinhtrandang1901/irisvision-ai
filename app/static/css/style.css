@@ -6528,3 +6528,167 @@ body.dark-mode #history-list .history-item img {
     border-radius: inherit;
     display: block;
 }
+/* =========================================
+   GOOGLE LOGIN - IRISVISION INTRO
+========================================= */
+
+.google-login-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    min-width: 280px;
+
+    padding: 14px 24px;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    color: #282133;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.16);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.google-login-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.22);
+}
+
+
+.google-icon {
+
+    width: 28px;
+
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 800;
+}
+
+
+.login-note {
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    opacity: 0.72;
+}
+
+
+.login-error {
+
+    margin-top: 10px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.google-user-box {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 14px;
+}
+
+
+.google-avatar {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid
+        rgba(255, 255, 255, 0.35);
+}
+
+
+.google-user-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: left;
+}
+
+
+.google-user-info strong {
+
+    font-size: 14px;
+}
+
+
+.google-user-info span {
+
+    margin-top: 2px;
+
+    font-size: 10px;
+
+    opacity: 0.72;
+}
+
+
+.logout-btn {
+
+    display: inline-block;
+
+    margin-top: 8px;
+
+    color: inherit;
+
+    font-size: 11px;
+
+    text-decoration: none;
+
+    opacity: 0.72;
+}
+
+
+.logout-btn:hover {
+
+    opacity: 1;
+}
