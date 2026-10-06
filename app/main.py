@@ -34,7 +34,24 @@ app.add_middleware(
     https_only=False,
     max_age=60 * 60 * 24 * 7
 )
+# =========================
+# GOOGLE OAUTH
+# =========================
 
+oauth = OAuth()
+
+oauth.register(
+    name="google",
+    client_id=os.getenv("GOOGLE_CLIENT_ID"),
+    client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
+    server_metadata_url=(
+        "https://accounts.google.com/"
+        ".well-known/openid-configuration"
+    ),
+    client_kwargs={
+        "scope": "openid email profile"
+    }
+)
 # =========================
 # ĐƯỜNG DẪN CÁC THƯ MỤC
 # =========================
@@ -102,7 +119,12 @@ class IrisInput(BaseModel):
     sepal_width: float
     petal_length: float
     petal_width: float
+# =========================
+# LẤY TÀI KHOẢN ĐĂNG NHẬP
+# =========================
 
+def get_current_user(request: Request):
+    return request.session.get("user")
 
 # =========================
 # TRANG WEB CHÍNH
@@ -111,12 +133,100 @@ class IrisInput(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
 
+    user = get_current_user(request)
+
     return templates.TemplateResponse(
         request=request,
-        name="index.html"
+        name="index.html",
+        context={
+            "user": user
+        }
+    )
+# =========================
+# BẮT ĐẦU ĐĂNG NHẬP GOOGLE
+# =========================
+
+@app.get("/auth/google")
+async def google_login(request: Request):
+
+    redirect_uri = os.getenv(
+        "GOOGLE_REDIRECT_URI"
     )
 
+    if not redirect_uri:
+        raise HTTPException(
+            status_code=500,
+            detail="GOOGLE_REDIRECT_URI chưa được cấu hình."
+        )
 
+    return await oauth.google.authorize_redirect(
+        request,
+        redirect_uri
+    )
+# =========================
+# GOOGLE CALLBACK
+# =========================
+
+@app.get("/auth/google/callback")
+async def google_callback(request: Request):
+
+    try:
+
+        token = await oauth.google.authorize_access_token(
+            request
+        )
+
+        userinfo = token.get("userinfo")
+
+        if not userinfo:
+            raise ValueError(
+                "Không nhận được thông tin tài khoản Google."
+            )
+
+        request.session["user"] = {
+            "name": userinfo.get(
+                "name",
+                "Google User"
+            ),
+            "email": userinfo.get(
+                "email",
+                ""
+            ),
+            "picture": userinfo.get(
+                "picture",
+                ""
+            )
+        }
+
+        return RedirectResponse(
+            url="/",
+            status_code=303
+        )
+
+    except Exception as e:
+
+        print(
+            "Google OAuth error:",
+            repr(e)
+        )
+
+        return RedirectResponse(
+            url="/?auth_error=oauth_failed",
+            status_code=303
+        )
+# =========================
+# ĐĂNG XUẤT
+# =========================
+
+@app.get("/logout")
+def logout(request: Request):
+
+    request.session.clear()
+
+    return RedirectResponse(
+        url="/",
+        status_code=303
+    )
 # =========================
 # KIỂM TRA SERVER
 # =========================
@@ -134,7 +244,21 @@ def health():
 # =========================
 
 @app.post("/predict")
-def predict(data: IrisInput):
+def predict(
+    data: IrisInput,
+    request: Request
+):
+
+    user = get_current_user(request)
+
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail=(
+                "Bạn phải đăng nhập bằng "
+                "Google trước khi dự đoán."
+            )
+        )
 
     input_data = np.array([
         [
