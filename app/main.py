@@ -20,7 +20,20 @@ app = FastAPI(
     description="API phân loại hoa Iris bằng Linear SVM",
     version="1.0.0"
 )
+# =========================
+# SESSION ĐĂNG NHẬP
+# =========================
 
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=os.getenv(
+        "SESSION_SECRET",
+        "dev-secret-change-me"
+    ),
+    same_site="lax",
+    https_only=False,
+    max_age=60 * 60 * 24 * 7
+)
 
 # =========================
 # ĐƯỜNG DẪN CÁC THƯ MỤC
