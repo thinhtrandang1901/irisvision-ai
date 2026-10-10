@@ -6695,3 +6695,64 @@ body.dark-mode #history-list .history-item img {
     transform: translateY(-2px);
     opacity: 1;
 }
+
+/* ===== FIX: GOOGLE USER INFO + LOGOUT VISIBILITY ===== */
+
+.google-user-box {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    color: #ffffff !important;
+}
+
+.google-user-info {
+    display: flex !important;
+    flex-direction: column;
+    text-align: left;
+    color: #ffffff !important;
+}
+
+.google-user-info strong {
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+}
+
+.google-user-info span {
+    color: #e5e2ed !important;
+    font-size: 12px !important;
+    opacity: 1 !important;
+    margin-top: 5px;
+}
+
+.logout-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    min-height: 44px;
+    padding: 0 22px;
+
+    background: #352744 !important;
+    color: #ffffff !important;
+    border: 1px solid #b89ae9 !important;
+    border-radius: 12px;
+
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    opacity: 1 !important;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #604487 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    opacity: 1 !important;
+}
